@@ -1,0 +1,32 @@
+{
+  "name": "servidor",
+  "version": "1.0.0",
+  "description": "Servidor de la aplicación 'Email Tracker'",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file .env dist/index.js",
+    "build": "tsc",
+    "dev": "tsx watch --env-file .env src/index.ts"
+  },
+  "keywords": [
+    "App",
+    "Email",
+    "Tracker"
+  ],
+  "author": "Matías Seltzer",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.15.6",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
