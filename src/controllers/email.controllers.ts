@@ -31,7 +31,7 @@ export const postData = async (req: Request, res: Response) => {
 
   try {
     const { rows } = await pool.query(
-      "INSERT INTO email (email, rubro) VALUES ($1, $2)",
+      "INSERT INTO email (email, rubro) VALUES ($1, $2) ON CONFLICT (email) DO NOTHING",
       [email, rubro]
     );
     res.json(rows);

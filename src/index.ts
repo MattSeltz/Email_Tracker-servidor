@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import { SERVER_PORT } from "./config/config";
+import { CLIENT, SERVER_PORT } from "./config/config";
 
 import emailRoutes from "./routes/email.routes";
 
@@ -10,7 +10,11 @@ const app = express();
 app.disable("x-powered-by");
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: CLIENT,
+  })
+);
 
 app.get("/", (_, res) => {
   res.send(`<h1>Email Tracker</h1>`);
