@@ -4,7 +4,7 @@ import { pool } from "../db/db";
 
 export const getData = async (req: Request, res: Response) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM email");
+    const { rows } = await pool.query("SELECT * FROM email ORDER BY id ASC");
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -62,6 +62,22 @@ export const deleteData = async (req: Request, res: Response) => {
 
   try {
     const { rows } = await pool.query("DELETE FROM email WHERE id = $1", [id]);
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+};
+
+export const updateIsSend = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { send } = req.body;
+
+  try {
+    const { rows } = await pool.query(
+      "UPDATE email SET send = $1 WHERE id = $2",
+      [send, id]
+    );
     res.json(rows);
   } catch (error) {
     console.error(error);
