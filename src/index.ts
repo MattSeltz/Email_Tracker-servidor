@@ -7,6 +7,8 @@ import { CLIENT, SERVER_PORT } from "./config/config";
 import emailRoutes from "./routes/email.routes";
 import authRoutes from "./routes/auth.routes";
 
+import { authMiddleware } from "./middleware/auth.middleware";
+
 const app = express();
 
 app.disable("x-powered-by");
@@ -24,8 +26,9 @@ app.get("/", (_, res) => {
   res.send(`<h1>Email Tracker</h1>`);
 });
 
-app.use("/email", emailRoutes);
 app.use("/auth", authRoutes);
+app.use(authMiddleware);
+app.use("/email", emailRoutes);
 
 app.listen(SERVER_PORT, () =>
   console.log(`Servidor corriendo en el puerto ${SERVER_PORT}`)
