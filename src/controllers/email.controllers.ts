@@ -4,7 +4,7 @@ import { pool } from "../db/db";
 
 export const getData = async (req: Request, res: Response) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM email ORDER BY id ASC");
+    const { rows } = await pool.query("SELECT * FROM emails ORDER BY id ASC");
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -16,7 +16,7 @@ export const getOneData = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const { rows } = await pool.query("SELECT * FROM email WHERE id = $1", [
+    const { rows } = await pool.query("SELECT * FROM emails WHERE id = $1", [
       id,
     ]);
     res.json(rows[0]);
@@ -31,7 +31,7 @@ export const postData = async (req: Request, res: Response) => {
 
   try {
     const { rows } = await pool.query(
-      "INSERT INTO email (email, rubro) VALUES ($1, $2) ON CONFLICT (email) DO NOTHING",
+      "INSERT INTO emails (email, rubro) VALUES ($1, $2) ON CONFLICT (email) DO NOTHING",
       [email, rubro]
     );
     res.json(rows);
@@ -47,7 +47,7 @@ export const putData = async (req: Request, res: Response) => {
 
   try {
     const { rows } = await pool.query(
-      "UPDATE email SET email = $1, rubro = $2 WHERE id = $3",
+      "UPDATE emails SET email = $1, rubro = $2 WHERE id = $3",
       [email, rubro, id]
     );
     res.json(rows);
@@ -61,7 +61,7 @@ export const deleteData = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const { rows } = await pool.query("DELETE FROM email WHERE id = $1", [id]);
+    const { rows } = await pool.query("DELETE FROM emails WHERE id = $1", [id]);
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -75,7 +75,7 @@ export const updateIsSend = async (req: Request, res: Response) => {
 
   try {
     const { rows } = await pool.query(
-      "UPDATE email SET send = $1 WHERE id = $2",
+      "UPDATE emails SET send = $1 WHERE id = $2",
       [send, id]
     );
     res.json(rows);
