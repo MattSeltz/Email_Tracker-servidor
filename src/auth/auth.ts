@@ -55,7 +55,7 @@ export const login = async (req: Request, res: Response) => {
           maxAge: 60 * 60 * 1000,
         });
 
-        res.json({ messsage: "OK!" });
+        res.json({ messsage: "OK!", id: rows[0].id });
       } else {
         res.status(500).json({ error: "Contraseña incorrecta" });
       }

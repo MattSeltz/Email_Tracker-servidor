@@ -3,8 +3,13 @@ import { Request, Response } from "express";
 import { pool } from "../db/db";
 
 export const getData = async (req: Request, res: Response) => {
+  const { userId } = req.query;
+
   try {
-    const { rows } = await pool.query("SELECT * FROM emails ORDER BY id ASC");
+    const { rows } = await pool.query(
+      "SELECT * FROM emails WHERE user_id = $1 ORDER BY id ASC",
+      [userId]
+    );
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -27,12 +32,12 @@ export const getOneData = async (req: Request, res: Response) => {
 };
 
 export const postData = async (req: Request, res: Response) => {
-  const { email, rubro } = req.body;
+  const { email, rubro, userId } = req.body;
 
   try {
     const { rows } = await pool.query(
-      "INSERT INTO emails (email, rubro) VALUES ($1, $2) ON CONFLICT (email) DO NOTHING",
-      [email, rubro]
+      "INSERT INTO emails (email, rubro, user_id) VALUES ($1, $2, $3) ON CONFLICT (email, user_id) DO NOTHING",
+      [email, rubro, userId]
     );
     res.json(rows);
   } catch (error) {
