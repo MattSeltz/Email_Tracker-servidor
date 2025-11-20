@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-import { CLIENT, SERVER_PORT } from "./configs/configs";
+import { CLIENT, PORT } from "./configs/configs";
 
 import emailRoutes from "./routes/email.routes";
 import authRoutes from "./routes/auth.routes";
@@ -32,6 +32,4 @@ app.use("/recovery", recoveryRoutes);
 app.use(authMiddleware);
 app.use("/email", emailRoutes);
 
-app.listen(SERVER_PORT, () =>
-  console.log(`Servidor corriendo en el puerto ${SERVER_PORT}`)
-);
+app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));

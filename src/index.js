@@ -26,4 +26,4 @@ app.use("/auth", auth_routes_1.default);
 app.use("/recovery", recovery_routes_1.default);
 app.use(auth_middleware_1.authMiddleware);
 app.use("/email", email_routes_1.default);
-app.listen(configs_1.SERVER_PORT, () => console.log(`Servidor corriendo en el puerto ${configs_1.SERVER_PORT}`));
+app.listen(configs_1.PORT, () => console.log(`Servidor corriendo en el puerto ${configs_1.PORT}`));
