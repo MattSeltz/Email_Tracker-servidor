@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-import { CLIENT, SERVER_PORT } from "./config/config";
+import { CLIENT, SERVER_PORT } from "./configs/configs";
 
 import emailRoutes from "./routes/email.routes";
 import authRoutes from "./routes/auth.routes";
+import recoveryRoutes from "./routes/recovery.routes";
 
 import { authMiddleware } from "./middleware/auth.middleware";
 
@@ -27,6 +28,7 @@ app.get("/", (_, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/recovery", recoveryRoutes);
 app.use(authMiddleware);
 app.use("/email", emailRoutes);
 

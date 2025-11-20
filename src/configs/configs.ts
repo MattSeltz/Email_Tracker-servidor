@@ -8,4 +8,6 @@ export const {
   CLIENT,
   JWT_SECRET,
   ENVIRONMENT,
+  NODEMAILER_USER,
+  NODEMAILER_PASS,
 } = process.env;

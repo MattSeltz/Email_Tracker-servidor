@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 import { pool } from "../db/db";
 
-import { JWT_SECRET, ENVIRONMENT } from "../config/config";
+import { JWT_SECRET, ENVIRONMENT } from "../configs/configs";
 
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
