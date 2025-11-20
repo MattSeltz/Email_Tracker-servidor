@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const email_controllers_1 = require("../controllers/email.controllers");
+const router = (0, express_1.Router)();
+router.get("/", email_controllers_1.getData);
+router.get("/:id", email_controllers_1.getOneData);
+router.post("/", email_controllers_1.postData);
+router.put("/send/:id", email_controllers_1.updateIsSend);
+router.put("/:id", email_controllers_1.putData);
+router.delete("/:id", email_controllers_1.deleteData);
+exports.default = router;

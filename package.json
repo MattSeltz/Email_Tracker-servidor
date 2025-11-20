@@ -4,8 +4,8 @@
   "description": "Servidor de la aplicación 'Email Tracker'",
   "main": "index.js",
   "scripts": {
-    "start": "node --env-file .env dist/index.js",
-    "start:prod": "node dist/index.js",
+    "start": "node --env-file .env src/index.js",
+    "start:prod": "node src/index.js",
     "build": "tsc",
     "dev": "tsx watch --env-file .env src/index.ts"
   },
